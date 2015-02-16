@@ -14,3 +14,10 @@ function getLink() {
         alert("Vui lòng dán link vào!");
     }
 }
+
+function pullLink() {
+    $(document).ready(
+        function () {
+            document.getElementById("link-mp3").value = "http://mp3.zing.vn/bai-hat/My-Everything-Tien-Tien/ZW6FEBZA.html";
+    });
+}
