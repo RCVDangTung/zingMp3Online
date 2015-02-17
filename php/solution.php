@@ -31,12 +31,13 @@ if (!empty($_GET["url"])) {
             //Content
             $title = $data->title;
             $singer = $data->performer;
-            $mp3 = $data->source;
+            $link128 = $data->source;
             $link320 = "http://mp3.zing.vn/download/vip/song/" . getID($url);
 
             echo "<li class=\"list-group-item list-group-item-info\"><h3 style=\"font-weight: bold;\">" . $title . "</h3></li>";
             echo "<li class=\"list-group-item list-group-item-info\">Thể hiện: <strong>" . $singer . "</strong></li>";
-            echo "<li class=\"list-group-item list-group-item-info\">Download: <a href=\"" . $mp3 . "\" download=\"" . $mp3 . "\">128 kpbs</a> - <a href=\"" . $link320 . "\" download=\"" . $link320 . "\">320 kpbs</a></li>";
+            echo "<li class=\"list-group-item list-group-item-info\">Download: <a href=\"" . $link128 . "\" download=\"" . $link128 . "\">128 kpbs</a> - <a href=\"" . $link320 . "\" download=\"" . $link320 . "\">320 kpbs</a></li>";
+            echo "<li class=\"list-group-item list-group-item-info\"><button class=\"btn btn-info\" id=\"btn-play\" onclick=\"playMusic();\">Play</button><audio controls style=\"display: none;\" id=\"player\"><source src=\"" .  $link128 ."\" type=\"audio/mpeg\">Your browser does not support the audio element.</audio></li>";
             echo "<li class=\"list-group-item list-group-item-warning\"><p>" . $lyric . "</p></li>";
         }
         else {
