@@ -6,17 +6,7 @@
  * Time: 8:42 PM
  */
 
-function getSong($url) {
-    $urlm = "http://m.mp3.zing.vn";
-
-    $arr = explode("mp3.zing.vn", $url);
-    $urlm .= $arr[1];
-
-    if (!($content = file_get_contents($urlm))) {
-        printError();
-        return;
-    }
-
+function getSong($url, $content) {
     //Get infomation song
     $info = explode("xml=\"", $content);
     if ($info[0] == $content) {

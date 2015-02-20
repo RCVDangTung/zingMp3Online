@@ -38,5 +38,9 @@ function playMusic() {
     });
 }
 
-function playMusicAlbum(btn, id) {
+function playMusicAlbum(index) {
+    $(document).ready(function () {
+        $("#btn-" + index).fadeOut(1000);
+        $("#player-" + index).delay(1000).animate({width: 'toggle'});
+    });
 }

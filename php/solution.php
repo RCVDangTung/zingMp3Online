@@ -1,5 +1,6 @@
 <?php
 require("song.php");
+require("album.php");
 
 if (!empty($_GET["url"])) {
     $url = "t" . $_GET["url"];
@@ -15,8 +16,20 @@ if (!empty($_GET["url"])) {
         return;
     }
 
+    $urlm = "http://m.mp3.zing.vn";
+    $arr = explode("mp3.zing.vn", $url);
+    $urlm .= $arr[1];
+
+    if (!($content = file_get_contents($urlm))) {
+        printError();
+        return;
+    }
+
     if (strpos($url, "bai-hat")) {//Bài hát đơn
-        getSong($url);
+        getSong($url, $content);
+    }
+    if (strpos($url, "album")) {//Album
+        getAlbum($content);
     }
     else printError();
     stopLoadIcon();

@@ -5,5 +5,7 @@
 }
 #result {
     margin-top: 3%;
-    background-color: #ffffff;
+}
+.btn-play {
+    margin-left: 7px;
 }
