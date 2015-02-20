@@ -2,24 +2,16 @@
 if (!empty($_GET["url"])) {
     $url = $_GET["url"];
 
-    //Nếu không có giao thức http thì thêm vào link
-    $urlClone = "t" . $url;
-    if (!strpos($urlClone, "http://")) {
-        $url = "http://" . $url;
-    }
-
     //Kiểm tra xem link có phải của zing Mp3 không?
     if (!strpos($url, "://mp3.zing.vn/") && !strpos($url, "://m.mp3.zing.vn/")) {
         printError();
         return;
     }
 
-    if (strpos($url, "://mp3") != null) {
-        $arr = explode("http://", $url);
-        $urlm = "http://m." . $arr[1];
-    } else if (strpos($url, "://m.mp3.zing.vn") != null) {
-        $urlm = $url;
-    }
+    $urlm = "http://m.mp3.zing.vn";
+
+    $arr = explode("mp3.zing.vn", $url);
+    $urlm .= $arr[1];
 
     if (!($content = file_get_contents($urlm))) {
         printError();
