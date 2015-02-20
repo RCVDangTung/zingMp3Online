@@ -2,37 +2,31 @@
  * Created by Tu on 07/2/2015.
  */
 
-var listLink = [
-    "http://mp3.zing.vn/bai-hat/My-Everything-Tien-Tien/ZW6FEBZA.html",
-    "http://m.mp3.zing.vn/bai-hat/My-Everything-Tien-Tien/ZW6FEBZA.html",
-    "mp3.zing.vn/bai-hat/My-Everything-Tien-Tien/ZW6FEBZA.html",
-    "m.mp3.zing.vn/bai-hat/My-Everything-Tien-Tien/ZW6FEBZA.html"
-];
-var i = 0;
+var listLink, i=0;
+$.getJSON("data/listLink.json", function (content) {
+    listLink = content;
+});
+
 function incIndex() {
-    if (i<listLink.length - 1) {
-        i++;
-    }
+    if (i<listLink.length - 1) i++;
     else i = 0;
 }
 
 function getLink() {
-    var link = document.getElementById("link-mp3").value;
+    var link = $("#link-mp3").val();
     if (link) {
         $(document).ready(function () {
             link = encodeURI(link);
             $("#load").fadeIn('fast');
-            $("#list-link").load("php/solution.php?url=" + link);
+            $("#result").load("php/solution.php?url=" + link);
         });
     }
-    else {
-        alert("Vui lòng dán link vào!");
-    }
+    else alert("Vui lòng dán link vào!");
 }
 
 function pullLink() {
     $(document).ready(function () {
-        document.getElementById("link-mp3").value = listLink[i];
+        $("#link-mp3").val(listLink[i]);
         incIndex();
     });
 }
@@ -42,4 +36,7 @@ function playMusic() {
         $("#btn-play").fadeOut(1000);
         $("#player").delay(1000).animate({width: 'toggle'});
     });
+}
+
+function playMusicAlbum(btn, id) {
 }
