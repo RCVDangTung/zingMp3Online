@@ -1,10 +1,19 @@
 <?php
 if (!empty($_GET["url"])) {
     $url = $_GET["url"];
-    if (strpos($url, "ttp://") == null || strpos($url, "p3.zing.vn") == null) {
-        echo printError();
+
+    //Nếu không có giao thức http thì thêm vào link
+    $urlClone = "t" . $url;
+    if (!strpos($urlClone, "http://")) {
+        $url = "http://" . $url;
+    }
+
+    //Kiểm tra xem link có phải của zing Mp3 không?
+    if (!strpos($url, "://mp3.zing.vn/") && !strpos($url, "://m.mp3.zing.vn/")) {
+        printError();
         return;
     }
+
     if (strpos($url, "://mp3") != null) {
         $arr = explode("http://", $url);
         $urlm = "http://m." . $arr[1];
@@ -13,13 +22,14 @@ if (!empty($_GET["url"])) {
     }
 
     if (!($content = file_get_contents($urlm))) {
-        echo printError();
+        printError();
         return;
     }
+
     //Get infomation song
     $info = explode("xml=\"", $content);
     if ($info[0] == $content) {
-        echo printError();
+        printError();
         return;
     }
     $info = $info[1];
@@ -47,6 +57,8 @@ if (!empty($_GET["url"])) {
     echo "<li class=\"list-group-item list-group-item-info\">Download: <a href=\"" . $link128 . "\" download=\"" . $link128 . "\">128 kpbs</a> - <a href=\"" . $link320 . "\" download=\"" . $link320 . "\">320 kpbs</a></li>";
     echo "<li class=\"list-group-item list-group-item-info\"><button class=\"btn btn-info\" id=\"btn-play\" onclick=\"playMusic();\">Play</button><audio controls style=\"display: none;\" id=\"player\"><source src=\"" .  $link128 ."\" type=\"audio/mpeg\">Your browser does not support the audio element.</audio></li>";
     echo "<li class=\"list-group-item list-group-item-warning\"><p>" . $lyric . "</p></li>";
+
+    stopLoadIcon();
 }
 else {
     die("No!");
@@ -60,6 +72,11 @@ function getID($url) {
 }
 
 function printError() {
-    return "<h3 class='list-group-item list-group-item-danger'>Đã có lỗi xảy ra <img src='img/cry.png'/></h3>";
+    echo "<h3 class='list-group-item list-group-item-danger'>Đã có lỗi xảy ra <img src='img/cry.png'/></h3>";
+    stopLoadIcon();
+}
+
+function stopLoadIcon() {
+    echo "<script>$('#load').fadeOut('slow');</script>";
 }
 ?>
