@@ -28,7 +28,7 @@ if (!empty($_GET["url"])) {
     if (strpos($url, "bai-hat")) {//Bài hát đơn
         getSong($url, $content);
     }
-    if (strpos($url, "album")) {//Album
+    else if (strpos($url, "album")) {//Album
         getAlbum($content);
     }
     else printError();
