@@ -44,6 +44,6 @@ function printError() {
 }
 
 function stopLoadIcon() {
-    echo "<script>$('#load').fadeOut('slow');</script>";
+    echo "<script>$('#load').fadeOut('slow'); $('#refresh').delay(1000).fadeIn(1000);</script>";
 }
 ?>

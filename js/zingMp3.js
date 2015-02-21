@@ -2,6 +2,11 @@
  * Created by Tu on 07/2/2015.
  */
 
+function reFresh() {
+    $("#result").load("data/functions.txt");
+    $("#refresh").fadeOut('slow');
+}
+
 var listLink, i=0;
 $.getJSON("data/listLink.json", function (content) {
     listLink = content;

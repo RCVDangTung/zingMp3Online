@@ -21,13 +21,12 @@
                 <div class="form-group">
                     <button type="button" class="btn btn-primary btn-lg" onclick="getLink();">Download</button>
                     <span id="load" style="margin-left: 15px; display: none;"><img src="img/load.gif" /></span>
+                    <button type="button" class="btn btn-success btn-lg" onclick="reFresh();" style="display: none;" id="refresh">Refresh</button>
                 </div>
             </form>
         </div>
         <ul class="list-group" id="result">
-            <li class="list-group-item list-group-item-success"><h3>Chức năng:</h3></li>
-            <li class="list-group-item list-group-item-info">1. Giúp lấy thông tin bài hát (đơn) bất kì (Hỗ trợ tải nhạc chất lượng cao 320kpbs).</li>
-            <li class="list-group-item list-group-item-info">2. Giúp lấy thông tin của 1 album bất kì (Hỗ trợ tải nhạc chất lượng bình thường 128kpbs).</li>
+            <script>reFresh();</script>
         </ul>
         <footer class="modal-footer">
             <p>Code by <a href="http://tutran.net" title="Tú Trần Blog">Tu TV</a></p>
