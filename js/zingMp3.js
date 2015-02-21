@@ -18,6 +18,7 @@ function incIndex() {
 }
 
 function getLink() {
+    $("#refresh").hide();
     var link = $("#link-mp3").val();
     if (link) {
         $(document).ready(function () {
